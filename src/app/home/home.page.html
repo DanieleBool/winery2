@@ -36,10 +36,17 @@
   </ion-header>
 
   <div class="container" (scroll)="onScroll($event)">
-    <drag-scroll #nav [scroll-x-wheel-enabled]="true">
-      <div *ngFor="let item of items" drag-scroll-item>
+    <!-- <drag-scroll #nav [scroll-x-wheel-enabled]="true"> -->
+      <drag-scroll #nav [scroll-x-wheel-enabled]="true" (indexChanged)="onScroll($event)">
+
+      <!-- <div *ngFor="let item of items" drag-scroll-item> -->
+        <div *ngFor="let item of items; let i = index" drag-scroll-item>
+
         <div class="card shadow-sm">
-          <img [src]="item.Image" class="card-img-top" alt="Card Image">
+          <!-- <img [src]="item.Image" class="card-img-top" alt="Card Image"> -->
+          <img [src]="sanitizeImage(item.Image)" class="card-img-top" alt="Card Image">
+
+          <!-- <p>{{ item.Image }}</p> -->
           <div class="card-body">
             <h6 class="card-title">{{ item.Provincia }}</h6>
           </div>
